@@ -1,97 +1,34 @@
-let flashcards = [
+let quotes = [
     {
-        question: "What is HTML?",
-        answer: "HTML is used to create web pages."
+        text: "The best way to get started is to quit talking and begin doing.",
+        author: "Walt Disney"
     },
     {
-        question: "What is CSS?",
-        answer: "CSS is used for styling web pages."
+        text: "Don't let yesterday take up too much of today.",
+        author: "Will Rogers"
     },
     {
-        question: "What is JavaScript?",
-        answer: "JavaScript adds interactivity to web pages."
+        text: "It is our choices that show what we truly are.",
+        author: "J.K. Rowling"
+    },
+    {
+        text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+        author: "Winston Churchill"
+    },
+    {
+        text: "Believe you can and you're halfway there.",
+        author: "Theodore Roosevelt"
     }
 ];
 
-let currentIndex = 0;
+function newQuote() {
+    let randomIndex = Math.floor(Math.random() * quotes.length);
 
-function displayCard() {
-    document.getElementById("question").innerText =
-        flashcards[currentIndex].question;
+    document.getElementById("quote").innerText =
+        '"' + quotes[randomIndex].text + '"';
 
-    document.getElementById("answer").innerText =
-        flashcards[currentIndex].answer;
-
-    document.getElementById("answer").style.display = "none";
+    document.getElementById("author").innerText =
+        "- " + quotes[randomIndex].author;
 }
 
-function showAnswer() {
-    document.getElementById("answer").style.display = "block";
-}
-
-function nextCard() {
-    if (currentIndex < flashcards.length - 1) {
-        currentIndex++;
-        displayCard();
-    }
-}
-
-function previousCard() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        displayCard();
-    }
-}
-
-function addCard() {
-    let question =
-        document.getElementById("newQuestion").value;
-
-    let answer =
-        document.getElementById("newAnswer").value;
-
-    if (question !== "" && answer !== "") {
-        flashcards.push({
-            question: question,
-            answer: answer
-        });
-
-        alert("Flashcard Added!");
-
-        document.getElementById("newQuestion").value = "";
-        document.getElementById("newAnswer").value = "";
-    }
-}
-
-function editCard() {
-    let question =
-        document.getElementById("newQuestion").value;
-
-    let answer =
-        document.getElementById("newAnswer").value;
-
-    if (question !== "" && answer !== "") {
-        flashcards[currentIndex].question = question;
-        flashcards[currentIndex].answer = answer;
-
-        displayCard();
-
-        alert("Flashcard Updated!");
-    }
-}
-
-function deleteCard() {
-    if (flashcards.length > 1) {
-        flashcards.splice(currentIndex, 1);
-
-        if (currentIndex >= flashcards.length) {
-            currentIndex = flashcards.length - 1;
-        }
-
-        displayCard();
-
-        alert("Flashcard Deleted!");
-    }
-}
-
-displayCard();
+newQuote();
